@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
+    <script src="language.js"></script>
+    <title>Online Video KYC</title>
+</head>
+
+<body>  
+    <header>
+        <h1 data-i18n="pageTitle">Online Video KYC</h1>
+        <h2 data-i18n="formTitle">Video KYC Form</h2>
+    </header>
+
+    <main>
+        <section class="video-kyc-form">
+            <div class="language-container">
+                <label for="language-select" data-i18n="languageLabel">Language:</label>
+                <select id="language-select" onchange="changeLanguage(this.value)">
+                    <option value="en">English</option>
+                    <option value="hi">हिन्दी</option>
+                    <option value="ta">தமிழ்</option>
+                </select>
+            </div>
+            <form id="kyc-form" action="http://localhost:3000/submit" method="post" enctype="multipart/form-data">
+                <div class="blank-line"></div>
+                
+                <label>
+                    <span class="label-text" data-i18n="nameLabel">Name:</span>
+                    <span class="speaker-icon" onclick="speakLabel('nameLabel')">&#x1F50A;</span>
+                </label>
+                <input type="text" id="name" name="name" required>
+
+                <label>
+                    <span class="label-text" data-i18n="selfieLabel">Selfie:</span>
+                    <span class="speaker-icon" onclick="speakLabel('selfieLabel')">&#x1F50A;</span>
+                </label>
+                <div id="selfie-preview"></div>
+                <input type="hidden" id="selfie-input" name="selfie" required>
+                <button type="button" onclick="captureSelfie()" data-i18n="captureSelfieButton">Capture Selfie</button>
+
+                <label>
+                    <span class="label-text" data-i18n="dobLabel">Date of Birth:</span>
+                    <span class="speaker-icon" onclick="speakLabel('dobLabel')">&#x1F50A;</span>
+                </label>
+                <input type="date" id="dob" name="dob" required>
+
+                <label>
+                    <span class="label-text" data-i18n="addressLabel">Address:</span>
+                    <span class="speaker-icon" onclick="speakLabel('addressLabel')">&#x1F50A;</span>
+                </label>
+                <textarea id="address" name="address" rows="3" required></textarea>
+
+                <label>
+                    <span class="label-text" data-i18n="panAadhaarLabel">PAN Card / Aadhaar:</span>
+                    <span class="speaker-icon" onclick="speakLabel('panAadhaarLabel')">&#x1F50A;</span>
+                </label>
+                <input type="text" id="pan-aadhaar" name="pan-aadhaar" required>
+
+                <label>
+                    <span class="label-text" data-i18n="signatureLabel">Signature:</span>
+                    <span class="speaker-icon" onclick="speakLabel('signatureLabel')">&#x1F50A;</span>
+                </label>
+                <input type="file" id="signature" name="signature" accept="image/*" required>
+
+                <label>
+                    <span class="label-text" data-i18n="incomeRangeLabel">Income Range:</span>
+                    <span class="speaker-icon" onclick="speakLabel('incomeRangeLabel')">&#x1F50A;</span>
+                </label>
+                <select id="income-range" name="income-range" required>
+                    <option value="0-50000">0 - 50,000</option>
+                    <option value="50001-100000">50,001 - 100,000</option>
+                    <option value="100001-150000">100,001 - 150,000</option>
+                </select>
+
+                <label>
+                    <span class="label-text" data-i18n="employmentTypeLabel">Type of Employment:</span>
+                    <span class="speaker-icon" onclick="speakLabel('employmentTypeLabel')">&#x1F50A;</span>
+                </label>
+                <select id="employment-type" name="employment-type" required>
+                    <option value="salaried">Salaried</option>
+                    <option value="self-employed">Self-Employed</option>
+                </select>
+
+                <button type="submit" data-i18n="submitButton">Submit Video KYC</button>
+            </form>
+        </section>
+        <div id="success-message"></div>
+    </main>
+    <script src="client.js"></script>
+    <footer>
+        <p data-i18n="footerText">&copy; 2024 Online Video KYC. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
